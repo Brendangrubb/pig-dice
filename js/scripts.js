@@ -2,12 +2,12 @@
 
 // Game Manager Object
 function GameManager(playerOne, playerTwo) {
-  this.playerTurn = "";
   this.currentTotal = 0;
   this.diceRoll = "";
   this.currentStreak = 0;
   this.playerOne = playerOne;
   this.playerTwo = playerTwo;
+  this.playerTurn = this.playerOne;
 }
 // Game Manager Methods
 
@@ -25,11 +25,11 @@ GameManager.prototype.addStreak = function() {
 };
 // This is a GameManager object method to switch the player turn and call the clearing methods.
 GameManager.prototype.switchTurn = function() {
-
-};
-// This is a GameManager object method to clear the currentTotal score buffer
-GameManager.prototype.clearBuffer = function() {
-
+  if (this.playerTurn === this.playerOne) {
+    this.playerTurn = this.playerTwo;
+  }else {
+    this.playerTurn = this.playerOne;
+  }
 };
 // This is a GameManager object method to add the dice roll to the current total
 GameManager.prototype.addCurrentTotal = function() {
@@ -62,12 +62,11 @@ GameManager.prototype.rollDice = function() {
   } else {
     this.clearRound();
     this.switchTurn();
+    console.log(this.playerTurn);
   }
 };
 
-
 // Player Object
-
 function Player(formName) {
   this.playerName = formName;
   this.score = 0;
@@ -95,12 +94,8 @@ $(document).ready(function() {
   });
 
   $("#roll-dice-button").click(function() {
-
     gameManager.rollDice();
-
-
     $("#dice-roll").text(gameManager.diceRoll);
-
     $("#current-total").text(gameManager.currentTotal);
     $("#current-streak").text(gameManager.currentStreak);
   });
