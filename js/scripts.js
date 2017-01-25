@@ -99,6 +99,14 @@ $(document).ready(function() {
     $("#player-two-current-score").text(gameManager.playerTwo.score);
     $("#player-two-best-streak").text(gameManager.playerTwo.streak);
     $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
+
+    if(gameManager.playerTurn === gameManager.playerOne){
+      $("#player-one-marker").show();
+      $("#player-two-marker").hide();
+    } else if (gameManager.playerTurn === gameManager.playerTwo){
+      $("#player-two-marker").show();
+      $("#player-one-marker").hide();
+    }
   };
 
   $("#players-form").submit(function() {
@@ -109,7 +117,7 @@ $(document).ready(function() {
     var playerOneObject = new Player(playerOneInput);
     var playerTwoObject = new Player(playerTwoInput);
     gameManager = new GameManager(playerOneObject, playerTwoObject);
-
+    refreshUI();
     $(".player-one-name").text(playerOneObject.playerName);
     $(".player-two-name").text(playerTwoObject.playerName);
 

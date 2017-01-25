@@ -9,3 +9,11 @@ button {
 #winner-well {
   display: none;
 }
+
+.marker {
+  max-width: 125px;
+}
+
+#player-one-marker, #player-two-marker {
+  display: none;
+}
