@@ -72,7 +72,13 @@ $(document).ready(function() {
 
   });
 
+  $("#roll-dice-button").click(function() {
 
+  var roll = Math.floor(Math.random() * 6) + 1;
+
+  $("#dice-roll").text(roll);
+
+  })
 
 
 
