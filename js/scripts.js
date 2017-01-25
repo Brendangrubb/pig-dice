@@ -9,8 +9,49 @@ function GameManager(playerOne, playerTwo) {
   this.playerOne = playerOne;
   this.playerTwo = playerTwo;
 }
-
 // Game Manager Methods
+
+// This is a GameManager object method to ??? Drive the image display of the dice rolled.
+GameManager.prototype.displayDice = function() {
+
+};
+// This is a GameManager object method to add the score from currentTotal to player object score on hold button press.
+GameManager.prototype.addScore = function() {
+
+};
+// This is a GameManager object method to add the current streak to the player streak on hold button press
+GameManager.prototype.addStreak = function() {
+
+};
+// This is a GameManager object method to switch the player turn and call the clearing methods.
+GameManager.prototype.switchTurn = function() {
+
+};
+// This is a GameManager object method to clear the currentTotal score buffer
+GameManager.prototype.clearBuffer = function() {
+
+};
+// This is a GameManager object method to add the dice roll to the current total
+GameManager.prototype.addCurrentTotal = function() {
+
+};
+// This is a GameManager object method to add the non 1 dice streak to the current streak
+GameManager.prototype.addCurrentStreak = function() {
+
+};
+// This is a GameManager object method to clear the round information when player turn switches
+GameManager.prototype.clearRound = function() {
+
+};
+// This is a GameManager object method to start a fresh game retaining player information including streaks
+GameManager.prototype.restart = function() {
+
+};
+// This is a GameManager object method to see if a player has won
+GameManager.prototype.checkWin = function() {
+
+};
+// This is a GameManager object method to roll the dice
 GameManager.prototype.rollDice = function() {
   var roll = Math.floor(Math.random() * 6) + 1;
   this.diceRoll = roll;
@@ -20,37 +61,8 @@ GameManager.prototype.rollDice = function() {
   } else {
     this.currentTotal = 0;
     this.currentStreak = 0;
+    this.switchTurn();
   }
-};
-GameManager.prototype.displayDice = function() {
-
-};
-GameManager.prototype.addScore = function() {
-
-};
-GameManager.prototype.addStreak = function() {
-
-};
-GameManager.prototype.switchTurn = function() {
-
-};
-GameManager.prototype.clearBuffer = function() {
-
-};
-GameManager.prototype.addcurrentTotal = function() {
-
-};
-GameManager.prototype.addCurrentStreak = function() {
-
-};
-GameManager.prototype.clearRound = function() {
-
-};
-GameManager.prototype.restart = function() {
-
-};
-GameManager.prototype.checkWin = function() {
-
 };
 
 
