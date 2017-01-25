@@ -17,11 +17,16 @@ GameManager.prototype.displayDice = function() {
 };
 // This is a GameManager object method to add the score from currentTotal to player object score on hold button press.
 GameManager.prototype.addScore = function() {
-
+  this.playerTurn.score += this.currentTotal;
+  if (this.playerTurn.bestStreakScore < this.currentTotal) {
+    this.playerTurn.bestStreakScore = this.currentTotal;
+  }
 };
 // This is a GameManager object method to add the current streak to the player streak on hold button press
 GameManager.prototype.addStreak = function() {
-
+  if (this.playerTurn.streak < this.currentStreak) {
+    this.playerTurn.streak = this.currentStreak;
+  }
 };
 // This is a GameManager object method to switch the player turn and call the clearing methods.
 GameManager.prototype.switchTurn = function() {
@@ -30,6 +35,7 @@ GameManager.prototype.switchTurn = function() {
   }else {
     this.playerTurn = this.playerOne;
   }
+  this.clearRound();
 };
 // This is a GameManager object method to add the dice roll to the current total
 GameManager.prototype.addCurrentTotal = function() {
@@ -63,7 +69,6 @@ GameManager.prototype.rollDice = function() {
     this.addCurrentStreak();
     this.checkWin();
   } else {
-    this.clearRound();
     this.switchTurn();
     console.log(this.playerTurn);
   }
@@ -103,7 +108,17 @@ $(document).ready(function() {
     $("#current-streak").text(gameManager.currentStreak);
   });
 
-
+  $("#hold-button").click(function() {
+    gameManager.addScore();
+    gameManager.addStreak();
+    gameManager.switchTurn();
+    $("#player-one-current-score").text(gameManager.playerOne.score);
+    $("#player-one-best-streak").text(gameManager.playerOne.streak);
+    $("#player-one-best-streak-score").text(gameManager.playerOne.bestStreakScore);
+    $("#player-two-current-score").text(gameManager.playerTwo.score);
+    $("#player-two-best-streak").text(gameManager.playerTwo.streak);
+    $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
+  });
 
 
 
