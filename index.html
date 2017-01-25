@@ -8,7 +8,52 @@
     <title>Pig Dice</title>
   </head>
   <body>
-
-
+    <div class="container-fluid">
+      <div class="row">
+        <!-- player 1 -->
+        <div class="col-md-3">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h2 class="panel-title player-one-name">Player One</h2>
+            </div>
+            <div class="panel-body">
+              <h1>Current Score: <span id="player-one-current-score"></span></h1>
+              <h3>Best Streak: <span id="player-one-best-streak"></span></h3>
+              <h3>Best Streak Score: <span id="player-one-best-streak-score"></span></h3>
+            </div>
+          </div>
+        </div>
+        <!-- Game Board -->
+        <div class="col-md-6">
+          <div class="well">
+            <h1>Pig Dice!</h1>
+            <h2>Current Round!</h2>
+            <p>Dice Roll</p>
+            <p id="dice-roll"></p>
+            <p>Current Total</p>
+            <p id="current-total"></p>
+            <p>Current Streak</p>
+            <p id="current-streak"></p>
+            <p>Your Rolls</p>
+            <ul id="roll-list">
+            </lu>
+          </div>
+        </div>
+        <!-- player 2 -->
+        <div class="col-md-3">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h2 class="panel-title player-two-name">Player Two</h2>
+            </div>
+            <div class="panel-body">
+              <h1>Current Score: <span id="player-two-current-score"></span></h1>
+              <h3>Best Streak: <span id="player-two-best-streak"></span></h3>
+              <h3>Best Streak Score: <span id="player-two-best-streak-score"></span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
+
 </html>
