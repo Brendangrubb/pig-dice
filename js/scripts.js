@@ -33,15 +33,16 @@ GameManager.prototype.clearBuffer = function() {
 };
 // This is a GameManager object method to add the dice roll to the current total
 GameManager.prototype.addCurrentTotal = function() {
-
+  this.currentTotal += this.diceRoll;
 };
 // This is a GameManager object method to add the non 1 dice streak to the current streak
 GameManager.prototype.addCurrentStreak = function() {
-
+  this.currentStreak += 1;
 };
 // This is a GameManager object method to clear the round information when player turn switches
 GameManager.prototype.clearRound = function() {
-
+  this.currentTotal = 0;
+  this.currentStreak = 0;
 };
 // This is a GameManager object method to start a fresh game retaining player information including streaks
 GameManager.prototype.restart = function() {
@@ -56,11 +57,10 @@ GameManager.prototype.rollDice = function() {
   var roll = Math.floor(Math.random() * 6) + 1;
   this.diceRoll = roll;
   if (this.diceRoll !== 1) {
-    this.currentTotal += this.diceRoll;
-    this.currentStreak += 1;
+    this.addCurrentTotal();
+    this.addCurrentStreak();
   } else {
-    this.currentTotal = 0;
-    this.currentStreak = 0;
+    this.clearRound();
     this.switchTurn();
   }
 };
