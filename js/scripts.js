@@ -57,7 +57,13 @@ GameManager.prototype.restart = function() {
 // This is a GameManager object method to see if a player has won
 GameManager.prototype.checkWin = function() {
   if (this.currentTotal + this.playerTurn.score >= 100) {
-    alert("winner!");
+    this.addScore();
+    this.addStreak();
+    $("#gameboard").hide();
+    $("#winner-name").text(this.playerTurn.playerName);
+    $("#winner-streak-score").text(this.playerTurn.bestStreakScore);
+    $("#winner-streak").text(this.playerTurn.streak);
+    $("#winner-well").show();
   }
 };
 // This is a GameManager object method to roll the dice
@@ -82,10 +88,18 @@ function Player(formName) {
   this.bestStreakScore = 0;
 }
 
-// UI Logic
 $(document).ready(function() {
 
   var gameManager;
+
+  var refreshUI = function(){
+    $("#player-one-current-score").text(gameManager.playerOne.score);
+    $("#player-one-best-streak").text(gameManager.playerOne.streak);
+    $("#player-one-best-streak-score").text(gameManager.playerOne.bestStreakScore);
+    $("#player-two-current-score").text(gameManager.playerTwo.score);
+    $("#player-two-best-streak").text(gameManager.playerTwo.streak);
+    $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
+  };
 
   $("#players-form").submit(function() {
     event.preventDefault();
@@ -106,18 +120,14 @@ $(document).ready(function() {
     $("#dice-roll").text(gameManager.diceRoll);
     $("#current-total").text(gameManager.currentTotal);
     $("#current-streak").text(gameManager.currentStreak);
+    refreshUI();
   });
 
   $("#hold-button").click(function() {
     gameManager.addScore();
     gameManager.addStreak();
     gameManager.switchTurn();
-    $("#player-one-current-score").text(gameManager.playerOne.score);
-    $("#player-one-best-streak").text(gameManager.playerOne.streak);
-    $("#player-one-best-streak-score").text(gameManager.playerOne.bestStreakScore);
-    $("#player-two-current-score").text(gameManager.playerTwo.score);
-    $("#player-two-best-streak").text(gameManager.playerTwo.streak);
-    $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
+    refreshUI();
   });
 
 

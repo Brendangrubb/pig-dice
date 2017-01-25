@@ -25,7 +25,7 @@
         </div>
         <!-- Game Board -->
         <div class="col-md-6">
-          <div class="well">
+          <div class="well" id="gameboard">
             <h1>Pig Dice!</h1>
             <h2>Current Round!</h2>
             <p>Dice Roll</p>
@@ -51,6 +51,11 @@
             <p>Your Rolls</p>
             <ul id="roll-list">
             </lu>
+          </div>
+          <!-- Winner Screen -->
+          <div class="well" id="winner-well">
+            <h1>Congratulations to our winner <span id="winner-name"></span>!</h1>
+            <h3>You scored <span id="winner-streak-score"></span> points in one session and had a long streak of <span id="winner-streak"></span> rolls without rolling a one.</h3>
           </div>
         </div>
         <!-- player 2 -->

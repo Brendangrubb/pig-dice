@@ -5,3 +5,7 @@
 button {
   margin: 5px;
 }
+
+#winner-well {
+  display: none;
+}
