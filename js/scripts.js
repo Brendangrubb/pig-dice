@@ -3,7 +3,7 @@
 // Game Manager Object
 function GameManager(playerOne, playerTwo) {
   this.playerTurn = "";
-  this.scoreBuffer = 0;
+  this.currentTotal = 0;
   this.diceRoll = "";
   this.currentStreak = 0;
   this.playerOne = playerOne;
@@ -12,7 +12,15 @@ function GameManager(playerOne, playerTwo) {
 
 // Game Manager Methods
 GameManager.prototype.rollDice = function() {
-
+  var roll = Math.floor(Math.random() * 6) + 1;
+  this.diceRoll = roll;
+  if (this.diceRoll !== 1) {
+    this.currentTotal += this.diceRoll;
+    this.currentStreak += 1;
+  } else {
+    this.currentTotal = 0;
+    this.currentStreak = 0;
+  }
 };
 GameManager.prototype.displayDice = function() {
 
@@ -29,7 +37,7 @@ GameManager.prototype.switchTurn = function() {
 GameManager.prototype.clearBuffer = function() {
 
 };
-GameManager.prototype.addScoreBuffer = function() {
+GameManager.prototype.addcurrentTotal = function() {
 
 };
 GameManager.prototype.addCurrentStreak = function() {
@@ -58,6 +66,8 @@ function Player(formName) {
 // UI Logic
 $(document).ready(function() {
 
+  var gameManager;
+
   $("#players-form").submit(function() {
     event.preventDefault();
 
@@ -65,7 +75,7 @@ $(document).ready(function() {
     var playerTwoInput = $("#player2-name").val();
     var playerOneObject = new Player(playerOneInput);
     var playerTwoObject = new Player(playerTwoInput);
-    var gameManager = new GameManager(playerOneObject, playerTwoObject);
+    gameManager = new GameManager(playerOneObject, playerTwoObject);
 
     $(".player-one-name").text(playerOneObject.playerName);
     $(".player-two-name").text(playerTwoObject.playerName);
@@ -74,11 +84,14 @@ $(document).ready(function() {
 
   $("#roll-dice-button").click(function() {
 
-  var roll = Math.floor(Math.random() * 6) + 1;
+    gameManager.rollDice();
 
-  $("#dice-roll").text(roll);
 
-  })
+    $("#dice-roll").text(gameManager.diceRoll);
+
+    $("#current-total").text(gameManager.currentTotal);
+    $("#current-streak").text(gameManager.currentStreak);
+  });
 
 
 
