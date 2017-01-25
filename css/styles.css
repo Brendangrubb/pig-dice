@@ -12,6 +12,8 @@ button {
 
 .marker {
   max-width: 125px;
+  display: block;
+  margin: auto;
 }
 
 #player-one-marker, #player-two-marker {
