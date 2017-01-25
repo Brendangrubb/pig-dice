@@ -22,9 +22,9 @@ The first player to score 100 or more points wins.
 Bootstrap and Jquery files are included for additional styling and functionality.
 
 # Specs
-1. User enters two names in player one and player two form boxes, hits register players button and those names are used to create player objects.
+1. User enters two names in player one and player two form boxes, hits register players button and those names are used to create player objects. GameManager object is also created.
   - Example: David and Brendan
-  - Expected Output:Player One Object.name: David, Player Two Object.name: Brendan
+  - Expected Output:Player One Object.name: David, Player Two Object.name: Brendan 
 2. Name panels update with names from player objects
   - Example: David Brendan
   - Expected Output: Player One Output David, Player Two Output Brendan
@@ -60,7 +60,7 @@ Bootstrap and Jquery files are included for additional styling and functionality
   - Expected Output: game-manager.turn === playerTwo
 12. After roll has switched, next roll adds to new players stats after hold.
   - Example: player 1 rolls 1 or pressed Hold, Player2 rolls 5 and presses hold
-  - Expected Output: Player 2 Current Score === 5 
+  - Expected Output: Player 2 Current Score === 5
 
 
 
