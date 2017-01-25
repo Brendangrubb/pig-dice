@@ -50,7 +50,9 @@ GameManager.prototype.restart = function() {
 };
 // This is a GameManager object method to see if a player has won
 GameManager.prototype.checkWin = function() {
-
+  if (this.currentTotal + this.playerTurn.score >= 100) {
+    alert("winner!");
+  }
 };
 // This is a GameManager object method to roll the dice
 GameManager.prototype.rollDice = function() {
@@ -59,6 +61,7 @@ GameManager.prototype.rollDice = function() {
   if (this.diceRoll !== 1) {
     this.addCurrentTotal();
     this.addCurrentStreak();
+    this.checkWin();
   } else {
     this.clearRound();
     this.switchTurn();
