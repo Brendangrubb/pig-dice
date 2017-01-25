@@ -16,6 +16,11 @@ button {
   margin: auto;
 }
 
-#player-one-marker, #player-two-marker {
+#player-one-marker, #player-two-marker, #dice-one, #dice-two, #dice-three, #dice-four, #dice-five, #dice-six  {
   display: none;
+}
+
+.dice-pics {
+  max-width: 100px;
+
 }

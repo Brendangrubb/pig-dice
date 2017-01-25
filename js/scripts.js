@@ -13,8 +13,23 @@ function GameManager(playerOne, playerTwo) {
 
 // This is a GameManager object method to ??? Drive the image display of the dice rolled.
 GameManager.prototype.displayDice = function() {
-
+  var imageId = "";
+  if (this.diceRoll === 1) {
+    imageId = "#dice-one";
+  } else if (this.diceRoll === 2) {
+    imageId = "#dice-two";
+  } else if (this.diceRoll === 3) {
+    imageId = "#dice-three";
+  } else if (this.diceRoll === 4) {
+    imageId = "#dice-four";
+  } else if (this.diceRoll === 5) {
+    imageId = "#dice-five";
+  } else if (this.diceRoll === 6) {
+    imageId = "#dice-six";
+  }
+  return imageId;
 };
+
 // This is a GameManager object method to add the score from currentTotal to player object score on hold button press.
 GameManager.prototype.addScore = function() {
   this.playerTurn.score += this.currentTotal;
@@ -52,7 +67,14 @@ GameManager.prototype.clearRound = function() {
 };
 // This is a GameManager object method to start a fresh game retaining player information including streaks
 GameManager.prototype.restart = function() {
-
+  this.clearRound();
+  this.playerOne.score = 0;
+  this.playerOne.streak = 0;
+  this.playerOne.bestStreakScore = 0;
+  this.playerTwo.score = 0;
+  this.playerTwo.streak = 0;
+  this.playerTwo.bestStreakScore = 0;
+  this.diceRoll = "";
 };
 // This is a GameManager object method to see if a player has won
 GameManager.prototype.checkWin = function() {
@@ -92,6 +114,13 @@ $(document).ready(function() {
 
   var gameManager;
 
+  var clearDice = function(){
+    var diceImageIndex = ["one", "two", "three", "four", "five", "six"];
+    diceImageIndex.forEach(function(die) {
+      $("#dice-" + die).hide();
+    });
+  };
+
   var refreshUI = function(){
     $("#player-one-current-score").text(gameManager.playerOne.score);
     $("#player-one-best-streak").text(gameManager.playerOne.streak);
@@ -99,6 +128,9 @@ $(document).ready(function() {
     $("#player-two-current-score").text(gameManager.playerTwo.score);
     $("#player-two-best-streak").text(gameManager.playerTwo.streak);
     $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
+    $("#dice-roll").text(gameManager.diceRoll);
+    $("#current-total").text(gameManager.currentTotal);
+    $("#current-streak").text(gameManager.currentStreak);
 
     if(gameManager.playerTurn === gameManager.playerOne){
       $("#player-one-marker").show();
@@ -124,10 +156,10 @@ $(document).ready(function() {
   });
 
   $("#roll-dice-button").click(function() {
+    clearDice();
     gameManager.rollDice();
-    $("#dice-roll").text(gameManager.diceRoll);
-    $("#current-total").text(gameManager.currentTotal);
-    $("#current-streak").text(gameManager.currentStreak);
+    var diceImage = gameManager.displayDice();
+    $(diceImage).show();
     refreshUI();
   });
 
@@ -138,6 +170,12 @@ $(document).ready(function() {
     refreshUI();
   });
 
+  $("#reset-button").click(function() {
+    gameManager.restart();
+    clearDice();
+    refreshUI();
+
+  });
 
 
 });
