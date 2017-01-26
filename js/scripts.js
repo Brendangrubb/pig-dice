@@ -15,6 +15,11 @@ function GameManager(playerOne, playerTwo, requiredPoints) {
 
 // This is a GameManager object method to ??? Drive the image display of the dice rolled.
 GameManager.prototype.displayDice = function() {
+  var diceImageIndex = ["one", "two", "three", "four", "five", "six"];
+  diceImageIndex.forEach(function(die) {
+    $("#dice-" + die).hide();
+  });
+
   var imageId = "";
   if (this.diceRoll === 1) {
     imageId = "#dice-one";
@@ -47,17 +52,17 @@ GameManager.prototype.addStreak = function() {
 };
 // This is a GameManager object method to switch the player turn and call the clearing methods.
 GameManager.prototype.switchTurn = function() {
+  this.clearRound();
   if (this.playerTurn === this.playerOne && this.playerTwo.playerName !== "Computer") {
     this.playerTurn = this.playerTwo;
   }else if (this.playerTurn === this.playerTwo && this.playerTwo.playerName !== "Computer"){
     this.playerTurn = this.playerOne;
   } else if (this.playerTurn === this.playerOne && this.playerTwo.playerName === "Computer"){
     this.playerTurn = this.playerTwo;
-    this.aiTurn();
+    this.aiTurnManager();
   } else {
     this.playerTurn = this.playerOne;
   }
-  this.clearRound();
 };
 // This is a GameManager object method to add the dice roll to the current total
 GameManager.prototype.addCurrentTotal = function() {
@@ -69,6 +74,7 @@ GameManager.prototype.addCurrentStreak = function() {
 };
 // This is a GameManager object method to clear the round information when player turn switches
 GameManager.prototype.clearRound = function() {
+  console.log("clearing out current total and streak");
   this.currentTotal = 0;
   this.currentStreak = 0;
 };
@@ -130,6 +136,8 @@ GameManager.prototype.rollDice = function() {
   var roll = Math.floor(Math.random() * 6) + 1;
   this.diceRoll = roll;
   console.log(this.playerTurn.playerName + " rolled a " + this.diceRoll);
+  var diceImage = this.displayDice();
+  $(diceImage).show();
 
   if (this.diceRoll !== 1) {
     this.addCurrentTotal();
@@ -140,11 +148,31 @@ GameManager.prototype.rollDice = function() {
   }
 };
 // GameManager Functions for AI Turns
+GameManager.prototype.aiTurnManager = function() {
+  console.log("this is the currentTotal: " + this.currentTotal);
+  var tempObject = this;
+
+  while(tempObject.diceRoll !== 1){
+    setTimeout(function(){
+      tempObject.aiTurn();
+      console.log("turn two");
+    }, 10000);
+  }
+
+  
+
+  // this.addScore();
+  // this.addStreak();
+  // console.log("computer Holds");
+  // console.log(this.playerTwo);
+  // this.switchTurn();
+
+
+};
+
 GameManager.prototype.aiTurn = function() {
   this.rollDice();
-  this.displayDice();
-  console.log("computer is making a turn");
-}
+};
 
 // Player Object
 function Player(formName) {
@@ -155,8 +183,6 @@ function Player(formName) {
 }
 
 // ai Object
-
-
 
 $(document).ready(function() {
 
@@ -254,6 +280,9 @@ $(document).ready(function() {
     gameManager.addStreak();
     gameManager.switchTurn();
     refreshUI();
+
+
+
   });
 
   $("#reset-button").click(function() {
