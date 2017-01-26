@@ -60,7 +60,7 @@
                   <label for="required-win-score">How many points are you playing to?</label>
                   <input type="text" id="required-win-score" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-success">Start Game</button>
+                <button type="submit" class="btn button-size">Start Game</button>
               </form>
             </div>
 
@@ -75,7 +75,18 @@
                   <label for="player2-name">Player Two</label>
                   <input type="text" id="player2-name" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-success">Register Players</button>
+                <button type="submit" class="btn button-size">Register Players</button>
+              </form>
+            </div>
+            <!-- Registration for single player -->
+            <div id="player-registration-single-player">
+              <form id="single-player-form">
+                <div class="form-group">
+                  <label for="player1-name">Player One</label>
+                  <input type="text" id="player1-name-single-player" class="form-control">
+                </div>
+                <!-- insert ai difficult slider here -->
+                <button type="submit" class="btn button-size">Register Player</button>
               </form>
             </div>
             <!-- html for gameplay -->
@@ -100,10 +111,16 @@
 
               </div>
               <div class="button-holder">
-                <button type="click" class="btn btn-success" id="roll-dice-button">Roll Dice</button>
-                <button type="click" class="btn btn-success" id="hold-button">Hold</button>
-                <button type="click" class="btn btn-success center-block" id="reset-button">Reset</button>
+                <button type="click" class="btn" id="roll-dice-button">Roll Dice</button>
+                <button type="click" class="btn" id="hold-button">Hold</button>
+                <button type="click" class="btn center-block" id="reset-button">Reset</button>
               </div>
+              <!-- Winner Screen -->
+            </div>
+            <div id="winner-well">
+              <h1>Congratulations to our winner <span id="winner-name"></span>!</h1>
+              <h3>You scored <span id="winner-streak-score"></span> points in one session and had a long streak of <span id="winner-streak"></span> rolls without rolling a one.</h3>
+              <button type="click" class="btn center-block" id="play-again-button">Play Again!</button>
             </div>
           </div>
           <!-- For roll tracker array -->
@@ -111,12 +128,6 @@
             <p>Your Rolls</p>
             <ul id="roll-list">
             </lu>
-          </div>
-          <!-- Winner Screen -->
-          <div class="well" id="winner-well">
-            <h1>Congratulations to our winner <span id="winner-name"></span>!</h1>
-            <h3>You scored <span id="winner-streak-score"></span> points in one session and had a long streak of <span id="winner-streak"></span> rolls without rolling a one.</h3>
-            <button type="click" class="btn btn-success center-block" id="play-again-button">Play Again!</button>
           </div>
         </div>
         <!-- player 2 -->

@@ -4,18 +4,27 @@ body {
 
 button {
   margin: 5px;
+  background-color: #D2963E;
+}
+
+.button-size {
+  padding: 30px;
+  font-size: 30px;
 }
 
 #center-well {
+  background-color: #FFD89E;
   min-height: 800px;
+  border-radius: 25px;
 }
 
 .col-md-3 {
   text-align: center;
 }
 
+
 .col-md-6 {
-  background-color: #6FA017;
+  border-radius: 25px;
 }
 
 .current-scores {
@@ -33,6 +42,8 @@ button {
 
 #gameboard {
   background-color: #6FA017;
+  border-radius: 25px;
+  padding-bottom: 25px;
 }
 
 #hold-button {
@@ -55,13 +66,38 @@ button {
   display: block;
   margin: auto;
 }
+.panel {
+  border-radius: 25px;
+}
+
+.panel-heading {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.panel-success {
+  border-color: #D2963E;
+}
+
+.panel-success .panel-heading{
+    background-color: #D2963E;
+
+}
 
 .panel-title {
   font-size: 36px;
 }
 
+#player-registration-single-player {
+  display: none;
+}
+
 #player-one-marker, #player-two-marker, #dice-one, #dice-two, #dice-three, #dice-four, #dice-five, #dice-six, #gameboard, #player-registration, #roll-summary-panel{
   display: none;
+}
+
+#reset-button {
+
 }
 
 #reset-button, #play-again-button {
@@ -102,11 +138,13 @@ button {
 
 .size-increase{
   font-size: 28px;
+  padding: 10px;
 }
 
 .title-bar {
   padding: 20px;
   background-color: #D2963E;
+  border-radius: 25px;
 }
 .title-bar h1{
   font-size: 50px;
@@ -114,8 +152,9 @@ button {
 }
 
 .turn-color {
-  background-color: red;
+  background-color: gold;
   transition: background 1.0s linear;
+  border-radius: 25px;
 }
 
 .well {

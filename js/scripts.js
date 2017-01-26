@@ -1,13 +1,14 @@
 
 
 // Game Manager Object
-function GameManager(playerOne, playerTwo) {
+function GameManager(playerOne, playerTwo, requiredPoints) {
   this.currentTotal = 0;
   this.diceRoll = "";
   this.currentStreak = 0;
   this.playerOne = playerOne;
   this.playerTwo = playerTwo;
   this.playerTurn = this.playerOne;
+  this.requiredPoints = parseInt(requiredPoints);
   this.playerScoreTracking = {'playerOne': {"personalHighScore": 0, "personalStreak": 0, "personalBestStreakScore": 0}, "playerTwo": {"personalHighScore": 0, "personalStreak": 0, "personalBestStreakScore": 0}};
 }
 // Game Manager Methods
@@ -46,9 +47,14 @@ GameManager.prototype.addStreak = function() {
 };
 // This is a GameManager object method to switch the player turn and call the clearing methods.
 GameManager.prototype.switchTurn = function() {
-  if (this.playerTurn === this.playerOne) {
+  if (this.playerTurn === this.playerOne && this.playerTwo.playerName !== "Computer") {
     this.playerTurn = this.playerTwo;
-  }else {
+  }else if (this.playerTurn === this.playerTwo && this.playerTwo.playerName !== "Computer"){
+    this.playerTurn = this.playerOne;
+  } else if (this.playerTurn === this.playerOne && this.playerTwo.playerName === "Computer"){
+    this.playerTurn = this.playerTwo;
+    this.aiTurn();
+  } else {
     this.playerTurn = this.playerOne;
   }
   this.clearRound();
@@ -79,7 +85,7 @@ GameManager.prototype.restart = function() {
 };
 // This is a GameManager object method to see if a player has won
 GameManager.prototype.checkWin = function() {
-  if (this.currentTotal + this.playerTurn.score >= 20) {
+  if (this.currentTotal + this.playerTurn.score >= this.requiredPoints) {
     this.addScore();
     this.addStreak();
     this.personalRecordTracker();
@@ -88,7 +94,6 @@ GameManager.prototype.checkWin = function() {
     $("#winner-name").text(this.playerTurn.playerName);
     $("#winner-streak-score").text(this.playerTurn.bestStreakScore);
     $("#winner-streak").text(this.playerTurn.streak);
-    $("#center-well").hide()
     $("#winner-well").show();
   }
 };
@@ -114,19 +119,32 @@ GameManager.prototype.personalRecordTracker = function() {
   }
 };
 
+
+
+
+
+
+
 // This is a GameManager object method to roll the dice
 GameManager.prototype.rollDice = function() {
   var roll = Math.floor(Math.random() * 6) + 1;
   this.diceRoll = roll;
+  console.log(this.playerTurn.playerName + " rolled a " + this.diceRoll);
+
   if (this.diceRoll !== 1) {
     this.addCurrentTotal();
     this.addCurrentStreak();
     this.checkWin();
   } else {
     this.switchTurn();
-    console.log(this.playerTurn);
   }
 };
+// GameManager Functions for AI Turns
+GameManager.prototype.aiTurn = function() {
+  this.rollDice();
+  this.displayDice();
+  console.log("computer is making a turn");
+}
 
 // Player Object
 function Player(formName) {
@@ -136,10 +154,14 @@ function Player(formName) {
   this.bestStreakScore = 0;
 }
 
+// ai Object
+
+
 
 $(document).ready(function() {
 
   var gameManager;
+  var requiredPoints;
 
   var clearDice = function(){
     var diceImageIndex = ["one", "two", "three", "four", "five", "six"];
@@ -164,16 +186,8 @@ $(document).ready(function() {
     $("#player-two-all-time-best-streak").text(gameManager.playerScoreTracking.playerTwo.personalStreak);
     $("#player-two-all-time-best-streak-score").text(gameManager.playerScoreTracking.playerTwo.personalBestStreakScore);
     turnColor();
-
-    if(gameManager.playerTurn === gameManager.playerOne){
-      $("#player-one-marker").show();
-      $("#player-two-marker").hide();
-    } else if (gameManager.playerTurn === gameManager.playerTwo){
-      $("#player-two-marker").show();
-      $("#player-one-marker").hide();
-    }
   };
-
+  // Head to Head Enrollment Submit Button
   $("#players-form").submit(function() {
     event.preventDefault();
 
@@ -181,24 +195,48 @@ $(document).ready(function() {
     var playerTwoInput = $("#player2-name").val();
     var playerOneObject = new Player(playerOneInput);
     var playerTwoObject = new Player(playerTwoInput);
-    gameManager = new GameManager(playerOneObject, playerTwoObject);
+    gameManager = new GameManager(playerOneObject, playerTwoObject, requiredPoints);
     refreshUI();
     $(".player-one-name").text(playerOneObject.playerName);
     $(".player-two-name").text(playerTwoObject.playerName);
     $("#player-registration").hide();
     $("#gameboard").show();
+    console.log(gameManager);
 
   });
 
+  // Single PLayer Enrollment Submit Button
+  $("#single-player-form").submit(function() {
+    event.preventDefault();
+
+    var playerOneInput = $("#player1-name-single-player").val();
+    var playerOneObject = new Player(playerOneInput);
+    var aiObject = new Player("Computer");
+    gameManager = new GameManager(playerOneObject, aiObject, requiredPoints);
+    refreshUI();
+    $(".player-one-name").text(playerOneObject.playerName);
+    $(".player-two-name").text(aiObject.playerName);
+    $("#player-registration-single-player").hide();
+    $("#gameboard").show();
+    console.log(gameManager);
+
+  });
+  // Single or multiplayer entry form
   $("#game-type-selection").submit(function() {
     event.preventDefault();
     var gameTypeChoice = $("#game-type").val();
-    var requiredPoints = $("#required-win-score").val();
+    requiredPoints = $("#required-win-score").val();
 
     if (gameTypeChoice === "two-player"){
       $("#welcome-msg").hide();
       $("#player-registration").show();
     }
+    if (gameTypeChoice === "single-player"){
+      $("#welcome-msg").hide();
+      $("#player-registration-single-player").show();
+    }
+
+
 
 
   });
