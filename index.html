@@ -18,20 +18,22 @@
               <h2 class="panel-title player-one-name">Player One</h2>
             </div>
             <div class="panel-body">
-              <h1>Current Score: <span id="player-one-current-score"></span></h1>
-              <h3>Best Streak: <span id="player-one-best-streak"></span></h3>
-              <h3>Best Streak Score: <span id="player-one-best-streak-score"></span></h3>
-            </div>
-          </div>
-          <!-- Player 1 High Score Box -->
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h2 class="panel-title player-one-name">Player One High Scores</h2>
-            </div>
-            <div class="panel-body">
-              <h1>All Time High Score: <span id="player-one-all-time-best-score"></span></h1>
-              <h3>All Time Best Streak: <span id="player-one-all-time-best-streak"></span></h3>
-              <h3>All Time Streak Score: <span id="player-one-all-time-best-streak-score"></span></h3>
+              <div class="current-scores">
+                <h1>Current Score</h1>
+                <h1 class="score-number" id="player-one-current-score">0</h1>
+                <h3>Best Streak</h3>
+                <h3 class="score-number" id="player-one-best-streak">0</h3>
+                <h3>Best Streak Score</h3>
+                <h3 class="score-number" id="player-one-best-streak-score">0</h3>
+              </div>
+              <div class="high-scores">
+                <h1>All Time High Score</h1>
+                <h1 class="score-number" id="player-one-all-time-best-score">0</h1>
+                <h3>All Time Best Streak</h3>
+                <h3 class="score-number" id="player-one-all-time-best-streak">0</h3>
+                <h3>All Time Streak Score</h3>
+                <h3 class="score-number" id="player-one-all-time-best-streak-score">0</h3>
+              </div>
             </div>
           </div>
           <div id="player-one-marker">
@@ -41,7 +43,26 @@
         <!-- Game Board -->
         <div class="col-md-6">
           <div id="center-well" class="well">
-            <h1>Pig Dice!</h1>
+            <div class="title-bar">
+              <h1>Pig Dice!</h1>
+            </div>
+
+            <!-- Welcome Message -->
+            <div id="welcome-msg">
+              <h2>Welcome to our pig dice game!</h2>
+              <h3>Who would you like to play?</h3>
+              <form id="game-type-selection">
+                <select class="form-control" id="game-type">
+                  <option value="single-player">Single Player</option>
+                  <option value="two-player">Head to Head</option>
+                </select>
+                <div class="form-group">
+                  <label for="required-win-score">How many points are you playing to?</label>
+                  <input type="text" id="required-win-score" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Start Game</button>
+              </form>
+            </div>
 
             <!-- html to show player registration forms -->
             <div id="player-registration">
@@ -86,7 +107,7 @@
             </div>
           </div>
           <!-- For roll tracker array -->
-          <div class="well">
+          <div class="well" id="roll-summary-panel">
             <p>Your Rolls</p>
             <ul id="roll-list">
             </lu>
@@ -105,26 +126,38 @@
               <h2 class="panel-title player-two-name">Player Two</h2>
             </div>
             <div class="panel-body">
-              <h1>Current Score: <span id="player-two-current-score"></span></h1>
-              <h3>Best Streak: <span id="player-two-best-streak"></span></h3>
-              <h3>Best Streak Score: <span id="player-two-best-streak-score"></span></h3>
-            </div>
-          </div>
-          <!-- Player 2 High Score Box -->
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h2 class="panel-title player-two-name">Player Two High Scores</h2>
-            </div>
-            <div class="panel-body">
-              <h1>All Time High Score: <span id="player-two-all-time-best-score"></span></h1>
-              <h3>All Time Best Streak: <span id="player-two-all-time-best-streak"></span></h3>
-              <h3>All Time Streak Score: <span id="player-two-all-time-best-streak-score"></span></h3>
+              <div class="current-scores">
+                <h1>Current Score</h1>
+                <h1 class="score-number" id="player-two-current-score">0</h1>
+                <h3>Best Streak</h3>
+                <h3 class="score-number" id="player-two-best-streak">0</h3>
+                <h3>Best Streak Score</h3>
+                <h3 class="score-number" id="player-two-best-streak-score">0</h3>
+              </div>
+              <div class="high-scores">
+                <h1>All Time High Score</h1>
+                <h1 class="score-number" id="player-two-all-time-best-score">0</h1>
+                <h3>All Time Best Streak</h3>
+                <h3 class="score-number" id="player-two-all-time-best-streak">0</h3>
+                <h3>All Time Streak Score</h3>
+                <h3 class="score-number" id="player-two-all-time-best-streak-score">0</h3>
+              </div>
             </div>
           </div>
           <div id="player-two-marker">
             <img src="img/marker.jpg" alt="pig dice turn marker" class="marker">
           </div>
         </div>
+      </div>
+      <div class="row" id="rules-display">
+        <h1>Rules of Pig Dice</h1>
+        <p>Each turn, a player repeatedly rolls a die until either a 1 is rolled or the player decides to "hold"</p>
+        <ul>
+          <li>If the player rolls a 1, they score nothing and it becomes the next player's turn.</li>
+          <li>If the player rolls any other number, it is added to their turn total and the player's turn continues.</li>
+          <li>If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.</li>
+        </ul>
+        <p>The first player to score the predetermined amount of points wins.</p>
       </div>
     </div>
   </body>

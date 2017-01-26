@@ -1,10 +1,5 @@
 body {
   font-family: 'Gloria Hallelujah', cursive;
-
-}
-
-.well {
-  text-align: center;
 }
 
 button {
@@ -15,44 +10,29 @@ button {
   min-height: 800px;
 }
 
-#winner-well {
-  display: none;
-}
-
-.marker {
-  max-width: 125px;
-  display: block;
-  margin: auto;
-}
-
-#player-one-marker, #player-two-marker, #dice-one, #dice-two, #dice-three, #dice-four, #dice-five, #dice-six, #gameboard{
-  display: none;
-}
-
-.dice-pics {
-  max-width: 100px;
-}
-
-/*.button-holder {
-  position: fixed;
-  top: 320px;
+.col-md-3 {
   text-align: center;
-}*/
+}
+
+.col-md-6 {
+  background-color: #6FA017;
+}
+
+.current-scores {
+  margin-bottom: 65px;
+}
 
 #dice-holder {
   min-height: 250px;
   padding-top: 40px;
 }
 
-#roll-dice-button {
-  /*top: 320px;*/
-  /*left: 450px;*/
-  /*position: fixed;*/
-  height: 160px;
-  width: 200px;
-  font-size: 30px;
-  margin-right: 15px;
+.dice-pics {
+  max-width: 100px;
+}
 
+#gameboard {
+  background-color: #6FA017;
 }
 
 #hold-button {
@@ -63,7 +43,25 @@ button {
   width: 200px;
   font-size: 30px;
   margin-left: 15px;
+}
 
+.high-scores {
+  border-top: 5px dashed #D2963E;
+  padding-top: 30px;
+}
+
+.marker {
+  max-width: 125px;
+  display: block;
+  margin: auto;
+}
+
+.panel-title {
+  font-size: 36px;
+}
+
+#player-one-marker, #player-two-marker, #dice-one, #dice-two, #dice-three, #dice-four, #dice-five, #dice-six, #gameboard, #player-registration, #roll-summary-panel{
+  display: none;
 }
 
 #reset-button, #play-again-button {
@@ -73,6 +71,72 @@ button {
   font-size: 30px;
 }
 
+#roll-dice-button {
+  /*top: 320px;*/
+  /*left: 450px;*/
+  /*position: fixed;*/
+  height: 160px;
+  width: 200px;
+  font-size: 30px;
+  margin-right: 15px;
+}
+
+#rules-display {
+  font-size: 20px;
+  text-align: center;
+  margin-top: -10px;
+}
+#rules-display li {
+  list-style-type: none;
+  margin-bottom: 5px;
+}
+
+#rules-display p {
+  font-size: 28px;
+}
+
+.score-number {
+  border: 3px solid #851A0D;
+
+}
+
 .size-increase{
   font-size: 28px;
 }
+
+.title-bar {
+  padding: 20px;
+  background-color: #D2963E;
+}
+.title-bar h1{
+  font-size: 50px;
+  letter-spacing: 5px;
+}
+
+.well {
+  text-align: center;
+}
+
+#winner-well {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*.button-holder {
+  position: fixed;
+  top: 320px;
+  text-align: center;
+}*/

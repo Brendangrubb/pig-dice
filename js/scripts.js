@@ -88,6 +88,7 @@ GameManager.prototype.checkWin = function() {
     $("#winner-name").text(this.playerTurn.playerName);
     $("#winner-streak-score").text(this.playerTurn.bestStreakScore);
     $("#winner-streak").text(this.playerTurn.streak);
+    $("#center-well").hide()
     $("#winner-well").show();
   }
 };
@@ -187,6 +188,19 @@ $(document).ready(function() {
 
   });
 
+  $("#game-type-selection").submit(function() {
+    event.preventDefault();
+    var gameTypeChoice = $("#game-type").val();
+    var requiredPoints = $("#required-win-score").val();
+
+    if (gameTypeChoice === "two-player"){
+      $("#welcome-msg").hide();
+      $("#player-registration").show();
+    }
+
+
+  });
+
   $("#roll-dice-button").click(function() {
     clearDice();
     gameManager.rollDice();
@@ -214,6 +228,7 @@ $(document).ready(function() {
     clearDice();
     refreshUI();
     $("#winner-well").hide();
+    $("#center-well").show();
     $("#gameboard").show();
 
   });
