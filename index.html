@@ -5,6 +5,7 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/scripts.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
     <title>Pig Dice</title>
   </head>
   <body>
@@ -28,35 +29,53 @@
         </div>
         <!-- Game Board -->
         <div class="col-md-6">
-          <div class="well" id="gameboard">
+          <div id="center-well" class="well">
             <h1>Pig Dice!</h1>
-            <h2>Current Round!</h2>
-            <p>Dice Roll</p>
-            <img class="dice-pics" id="dice-one" src="img/one.png" alt="Dice Roll One"/>
-            <img class="dice-pics" id="dice-two" src="img/two.png" alt="Dice Roll Two"/>
-            <img class="dice-pics" id="dice-three" src="img/three.png" alt="Dice Roll Three"/>
-            <img class="dice-pics" id="dice-four" src="img/four.png" alt="Dice Roll Four"/>
-            <img class="dice-pics" id="dice-five" src="img/five.png" alt="Dice Roll Five"/>
-            <img class="dice-pics" id="dice-six" src="img/six.png" alt="Dice Roll Six"/>
-            <p id="dice-roll"></p>
-            <p>Current Total</p>
-            <p id="current-total"></p>
-            <p>Current Streak</p>
-            <p id="current-streak"></p>
-            <form id="players-form">
-              <div class="form-group">
-                <label for="player1-name">Player One</label>
-                <input type="text" id="player1-name" class="form-control">
+
+            <!-- html to show player registration forms -->
+            <div id="player-registration">
+              <form id="players-form">
+                <div class="form-group">
+                  <label for="player1-name">Player One</label>
+                  <input type="text" id="player1-name" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="player2-name">Player Two</label>
+                  <input type="text" id="player2-name" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-success">Register Players</button>
+              </form>
+            </div>
+            <!-- html for gameplay -->
+            <div id=gameboard>
+              <h2>Current Round!</h2>
+              <div id="dice-holder">
+                <img class="dice-pics" id="dice-one" src="img/one.png" alt="Dice Roll One"/>
+                <img class="dice-pics" id="dice-two" src="img/two.png" alt="Dice Roll Two"/>
+                <img class="dice-pics" id="dice-three" src="img/three.png" alt="Dice Roll Three"/>
+                <img class="dice-pics" id="dice-four" src="img/four.png" alt="Dice Roll Four"/>
+                <img class="dice-pics" id="dice-five" src="img/five.png" alt="Dice Roll Five"/>
+                <img class="dice-pics" id="dice-six" src="img/six.png" alt="Dice Roll Six"/>
+
+                <div class="pull-left size-increase">
+                  <p>Current Total</p>
+                  <p id="current-total"></p>
+                </div>
+                <div class="pull-right size-increase">
+                  <p>Current Streak</p>
+                  <p id="current-streak"></p>
+                </div>
+
               </div>
-              <div class="form-group">
-                <label for="player2-name">Player Two</label>
-                <input type="text" id="player2-name" class="form-control">
+              <div class="button-holder">
+                <button type="click" class="btn btn-success" id="roll-dice-button">Roll Dice</button>
+                <button type="click" class="btn btn-success" id="hold-button">Hold</button>
+                <button type="click" class="btn btn-success center-block" id="reset-button">Reset</button>
               </div>
-              <button type="submit" class="btn-success">Register Players</button>
-            </form>
-            <button type="click" class="btn-success" id="roll-dice-button">Roll Dice</button>
-            <button type="click" class="btn-success" id="hold-button">Hold</button>
-            <button type="click" class="btn-success" id="reset-button">Reset</button>
+            </div>
+          </div>
+          <!-- For roll tracker array -->
+          <div class="well">
             <p>Your Rolls</p>
             <ul id="roll-list">
             </lu>

@@ -128,7 +128,6 @@ $(document).ready(function() {
     $("#player-two-current-score").text(gameManager.playerTwo.score);
     $("#player-two-best-streak").text(gameManager.playerTwo.streak);
     $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
-    $("#dice-roll").text(gameManager.diceRoll);
     $("#current-total").text(gameManager.currentTotal);
     $("#current-streak").text(gameManager.currentStreak);
 
@@ -152,6 +151,8 @@ $(document).ready(function() {
     refreshUI();
     $(".player-one-name").text(playerOneObject.playerName);
     $(".player-two-name").text(playerTwoObject.playerName);
+    $("#player-registration").hide();
+    $("#gameboard").show();
 
   });
 

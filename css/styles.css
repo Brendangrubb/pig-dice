@@ -1,9 +1,18 @@
+body {
+  font-family: 'Gloria Hallelujah', cursive;
+
+}
+
 .well {
   text-align: center;
 }
 
 button {
   margin: 5px;
+}
+
+#center-well {
+  min-height: 800px;
 }
 
 #winner-well {
@@ -16,11 +25,54 @@ button {
   margin: auto;
 }
 
-#player-one-marker, #player-two-marker, #dice-one, #dice-two, #dice-three, #dice-four, #dice-five, #dice-six  {
+#player-one-marker, #player-two-marker, #dice-one, #dice-two, #dice-three, #dice-four, #dice-five, #dice-six, #gameboard{
   display: none;
 }
 
 .dice-pics {
   max-width: 100px;
+}
 
+/*.button-holder {
+  position: fixed;
+  top: 320px;
+  text-align: center;
+}*/
+
+#dice-holder {
+  min-height: 250px;
+  padding-top: 40px;
+}
+
+#roll-dice-button {
+  /*top: 320px;*/
+  /*left: 450px;*/
+  /*position: fixed;*/
+  height: 160px;
+  width: 200px;
+  font-size: 30px;
+  margin-right: 15px;
+
+}
+
+#hold-button {
+  /*top: 320px;*/
+  /*right: 450px;*/
+  /*position: fixed;*/
+  height: 160px;
+  width: 200px;
+  font-size: 30px;
+  margin-left: 15px;
+
+}
+
+#reset-button {
+  margin-top: 50px;
+  height: 60px;
+  width: 300px;
+  font-size: 30px;
+}
+
+.size-increase{
+  font-size: 28px;
 }
