@@ -155,6 +155,12 @@ $(document).ready(function() {
     $("#player-two-best-streak-score").text(gameManager.playerTwo.bestStreakScore);
     $("#current-total").text(gameManager.currentTotal);
     $("#current-streak").text(gameManager.currentStreak);
+    $("#player-one-all-time-best-score").text(gameManager.playerScoreTracking.playerOne.personalHighScore);
+    $("#player-one-all-time-best-streak").text(gameManager.playerScoreTracking.playerOne.personalStreak);
+    $("#player-one-all-time-best-streak-score").text(gameManager.playerScoreTracking.playerOne.personalBestStreakScore);
+    $("#player-two-all-time-best-score").text(gameManager.playerScoreTracking.playerTwo.personalHighScore);
+    $("#player-two-all-time-best-streak").text(gameManager.playerScoreTracking.playerTwo.personalStreak);
+    $("#player-two-all-time-best-streak-score").text(gameManager.playerScoreTracking.playerTwo.personalBestStreakScore);
 
     if(gameManager.playerTurn === gameManager.playerOne){
       $("#player-one-marker").show();
