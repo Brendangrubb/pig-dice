@@ -8,6 +8,7 @@ function GameManager(playerOne, playerTwo) {
   this.playerOne = playerOne;
   this.playerTwo = playerTwo;
   this.playerTurn = this.playerOne;
+  this.playerScoreTracking = {'playerOne': {"personalHighScore": 0, "personalStreak": 0, "personalBestStreakScore": 0}, "playerTwo": {"personalHighScore": 0, "personalStreak": 0, "personalBestStreakScore": 0}};
 }
 // Game Manager Methods
 
@@ -78,9 +79,11 @@ GameManager.prototype.restart = function() {
 };
 // This is a GameManager object method to see if a player has won
 GameManager.prototype.checkWin = function() {
-  if (this.currentTotal + this.playerTurn.score >= 100) {
+  if (this.currentTotal + this.playerTurn.score >= 20) {
     this.addScore();
     this.addStreak();
+    this.personalRecordTracker();
+    console.log(this.playerScoreTracking);
     $("#gameboard").hide();
     $("#winner-name").text(this.playerTurn.playerName);
     $("#winner-streak-score").text(this.playerTurn.bestStreakScore);
@@ -88,6 +91,28 @@ GameManager.prototype.checkWin = function() {
     $("#winner-well").show();
   }
 };
+// This is a GameManager object method for checking updating player records across games
+GameManager.prototype.personalRecordTracker = function() {
+  if (this.playerOne.score > this.playerScoreTracking.playerOne.personalHighScore){
+    this.playerScoreTracking.playerOne.personalHighScore = this.playerOne.score;
+  }
+  if (this.playerOne.streak > this.playerScoreTracking.playerOne.personalStreak){
+    this.playerScoreTracking.playerOne.personalStreak = this.playerOne.streak;
+  }
+  if (this.playerOne.bestStreakScore > this.playerScoreTracking.playerOne.personalBestStreakScore){
+    this.playerScoreTracking.playerOne.personalBestStreakScore = this.playerOne.bestStreakScore;
+  }
+  if (this.playerTwo.score > this.playerScoreTracking.playerTwo.personalHighScore){
+    this.playerScoreTracking.playerTwo.personalHighScore = this.playerTwo.score;
+  }
+  if (this.playerTwo.streak > this.playerScoreTracking.playerTwo.personalStreak){
+    this.playerScoreTracking.playerTwo.personalStreak = this.playerTwo.streak;
+  }
+  if (this.playerTwo.bestStreakScore > this.playerScoreTracking.playerTwo.personalBestStreakScore){
+    this.playerScoreTracking.playerTwo.personalBestStreakScore = this.playerTwo.bestStreakScore;
+  }
+};
+
 // This is a GameManager object method to roll the dice
 GameManager.prototype.rollDice = function() {
   var roll = Math.floor(Math.random() * 6) + 1;
