@@ -209,5 +209,13 @@ $(document).ready(function() {
 
   });
 
+  $("#play-again-button").click(function() {
+    gameManager.restart();
+    clearDice();
+    refreshUI();
+    $("#winner-well").hide();
+    $("#gameboard").show();
+
+  });
 
 });
