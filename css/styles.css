@@ -113,6 +113,11 @@ button {
   letter-spacing: 5px;
 }
 
+.turn-color {
+  background-color: red;
+  transition: background 1.0s linear;
+}
+
 .well {
   text-align: center;
 }

@@ -136,6 +136,7 @@ function Player(formName) {
   this.bestStreakScore = 0;
 }
 
+
 $(document).ready(function() {
 
   var gameManager;
@@ -162,6 +163,7 @@ $(document).ready(function() {
     $("#player-two-all-time-best-score").text(gameManager.playerScoreTracking.playerTwo.personalHighScore);
     $("#player-two-all-time-best-streak").text(gameManager.playerScoreTracking.playerTwo.personalStreak);
     $("#player-two-all-time-best-streak-score").text(gameManager.playerScoreTracking.playerTwo.personalBestStreakScore);
+    turnColor();
 
     if(gameManager.playerTurn === gameManager.playerOne){
       $("#player-one-marker").show();
@@ -232,5 +234,16 @@ $(document).ready(function() {
     $("#gameboard").show();
 
   });
+
+  var turnColor = function() {
+    if(gameManager.playerTurn === gameManager.playerOne){
+
+      $("#player-one-panel").addClass("turn-color");
+      $("#player-two-panel").removeClass("turn-color");
+    } else if (gameManager.playerTurn === gameManager.playerTwo){
+      $("#player-two-panel").addClass("turn-color");
+      $("#player-one-panel").removeClass("turn-color");
+    }
+  };
 
 });
