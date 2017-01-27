@@ -1,5 +1,3 @@
-
-
 // Game Manager Object
 function GameManager(playerOne, playerTwo, requiredPoints) {
   this.currentTotal = 0;
@@ -74,7 +72,6 @@ GameManager.prototype.addCurrentStreak = function() {
 };
 // This is a GameManager object method to clear the round information when player turn switches
 GameManager.prototype.clearRound = function() {
-  console.log("clearing out current total and streak");
   this.currentTotal = 0;
   this.currentStreak = 0;
 };
@@ -95,7 +92,6 @@ GameManager.prototype.checkWin = function() {
     this.addScore();
     this.addStreak();
     this.personalRecordTracker();
-    console.log(this.playerScoreTracking);
     $("#gameboard").hide();
     $("#winner-name").text(this.playerTurn.playerName);
     $("#winner-streak-score").text(this.playerTurn.bestStreakScore);
@@ -126,16 +122,10 @@ GameManager.prototype.personalRecordTracker = function() {
 };
 
 
-
-
-
-
-
 // This is a GameManager object method to roll the dice
 GameManager.prototype.rollDice = function() {
   var roll = Math.floor(Math.random() * 6) + 1;
   this.diceRoll = roll;
-  console.log(this.playerTurn.playerName + " rolled a " + this.diceRoll);
   var diceImage = this.displayDice();
   $(diceImage).show();
 
@@ -143,33 +133,29 @@ GameManager.prototype.rollDice = function() {
     this.addCurrentTotal();
     this.addCurrentStreak();
     this.checkWin();
-  } else {
-    this.switchTurn();
   }
+  // } else {
+  //   //this.switchTurn();
+  // }
 };
-// GameManager Functions for AI Turns
+//GameManager Functions for AI Turns
 GameManager.prototype.aiTurnManager = function() {
-  console.log("this is the currentTotal: " + this.currentTotal);
-  var tempObject = this;
-
-  while(tempObject.diceRoll !== 1){
-    setTimeout(function(){
-      tempObject.aiTurn();
-      console.log("turn two");
-    }, 10000);
+  var n = 0;
+  while(n < 5){
+    this.aiTurn();
+    if (this.diceRoll === 1 || this.requiredPoints < (this.playerTurn.score + this.currentTotal)){
+      break;
+    }
+    n++;
   }
-
-  
-
-  // this.addScore();
-  // this.addStreak();
-  // console.log("computer Holds");
-  // console.log(this.playerTwo);
-  // this.switchTurn();
-
+  if (this.diceRoll !== 1){
+    this.addScore();
+    this.addStreak();
+  }
+  this.switchTurn();
 
 };
-
+//
 GameManager.prototype.aiTurn = function() {
   this.rollDice();
 };
@@ -182,7 +168,14 @@ function Player(formName) {
   this.bestStreakScore = 0;
 }
 
-// ai Object
+
+
+
+
+
+
+
+
 
 $(document).ready(function() {
 
@@ -227,7 +220,6 @@ $(document).ready(function() {
     $(".player-two-name").text(playerTwoObject.playerName);
     $("#player-registration").hide();
     $("#gameboard").show();
-    console.log(gameManager);
 
   });
 
@@ -244,7 +236,6 @@ $(document).ready(function() {
     $(".player-two-name").text(aiObject.playerName);
     $("#player-registration-single-player").hide();
     $("#gameboard").show();
-    console.log(gameManager);
 
   });
   // Single or multiplayer entry form
@@ -273,6 +264,10 @@ $(document).ready(function() {
     var diceImage = gameManager.displayDice();
     $(diceImage).show();
     refreshUI();
+    if (gameManager.diceRoll === 1){
+      gameManager.switchTurn();
+      refreshUI();
+    }
   });
 
   $("#hold-button").click(function() {
